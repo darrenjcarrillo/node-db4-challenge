@@ -3,7 +3,7 @@ exports.up = function(knex) {
     .createTable("quantity", tbl => {
       // the type of the Primary Key is: integer without negative values, also called unsigned
       tbl.increments();
-      tbl.float("quantity").notNullable();
+      tbl.float("quantities").notNullable();
       tbl.string("units", 255);
     })
     .createTable("ingredients", tbl => {
@@ -29,7 +29,6 @@ exports.up = function(knex) {
       tbl.increments();
       tbl.string("step", 255).notNullable();
     })
-
     .createTable("recipe_ingredients", tbl => {
       tbl.increments();
       tbl.string("from", 255);
@@ -42,7 +41,7 @@ exports.up = function(knex) {
         .onDelete("RESTRICT")
         .onUpdate("CASCADE");
       tbl
-        .integer("ingredients_id")
+        .integer("ingredient_id")
         .unsigned()
         .references("id")
         .inTable("ingredients")
@@ -52,7 +51,7 @@ exports.up = function(knex) {
         .integer("instruction_id")
         .unsigned()
         .references("id")
-        .inTable("instruction")
+        .inTable("instructions")
         .onDelete("RESTRICT")
         .onUpdate("CASCADE");
     });
