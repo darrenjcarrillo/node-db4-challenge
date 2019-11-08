@@ -1,6 +1,7 @@
 exports.up = function(knex) {
   return knex.schema
     .createTable("quantity", tbl => {
+      // this should be the OG tree
       // the type of the Primary Key is: integer without negative values, also called unsigned
       tbl.increments();
       tbl.float("quantities").notNullable();
